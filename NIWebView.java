@@ -72,9 +72,12 @@ public class NIWebView extends WebView {
 			finishLatch = new CountDownLatch(1);
 			
 			try {
-				compileLatch.await(1, TimeUnit.SECONDS);
+				if (compileLatch.await(1, TimeUnit.SECONDS) == false)
+				{
+					Log.e(NI_LOG_TAG, "script did not compile");
+					return returnValue;
+				}
 			} catch (InterruptedException e) {
-				Log.e(NI_LOG_TAG, "script did not compile");
 				return returnValue;
 			}
 			
