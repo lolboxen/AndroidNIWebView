@@ -49,7 +49,7 @@ public class NIWebView extends WebView {
 		String finalCode = 
 				"javascript:try { " +
 					"NISyncInterface.didCompile();" +
-					"NISyncInterface.setReturnValue(\"" + escapedJavascript + "\");" +
+					"NISyncInterface.setReturnValue(eval(\"" + escapedJavascript + "\"));" +
 				"} catch(err) {" +
 					"NISyncInterface.setReturnValue('');" +
 				"}";
