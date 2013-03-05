@@ -12,6 +12,7 @@ import java.util.concurrent.TimeUnit;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 
 public class NIWebView extends WebView {
@@ -91,6 +92,7 @@ public class NIWebView extends WebView {
 		}
 		
 		@SuppressWarnings("unused")
+		@JavascriptInterface
 		public void setReturnValue(String returnValue)
 		{
 			this.returnValue = returnValue;
@@ -98,6 +100,7 @@ public class NIWebView extends WebView {
 		}
 		
 		@SuppressWarnings("unused")
+		@JavascriptInterface
 		public void didCompile()
 		{
 			compileLatch.countDown();
