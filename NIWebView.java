@@ -55,6 +55,7 @@ public class NIWebView extends WebView {
 					"NISyncInterface.setReturnValue('');" +
 				"}";
 		Log.v(NI_LOG_TAG, finalCode);
+		syncInterface.startLatches();
 		this.loadUrl(finalCode);
 		return syncInterface.getReturnValue();
 	}
@@ -65,12 +66,15 @@ public class NIWebView extends WebView {
 		private CountDownLatch finishLatch;
 		private String returnValue;
 		
+		public void startLatches()
+		{
+			compileLatch = new CountDownLatch(1);
+			finishLatch = new CountDownLatch(1);
+		}
+
 		public String getReturnValue()
 		{
 			returnValue = "";
-			
-			compileLatch = new CountDownLatch(1);
-			finishLatch = new CountDownLatch(1);
 			
 			try {
 				if (compileLatch.await(1, TimeUnit.SECONDS) == false)
