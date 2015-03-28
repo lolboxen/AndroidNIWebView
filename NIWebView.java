@@ -74,7 +74,7 @@ public class NIWebView extends WebView {
 
 		public String getReturnValue()
 		{
-			returnValue = "";
+			// returnValue = "";
 			
 			try {
 				if (compileLatch.await(1, TimeUnit.SECONDS) == false)
